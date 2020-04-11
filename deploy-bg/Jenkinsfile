@@ -22,22 +22,22 @@ pipeline {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'uda-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
 						docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-						docker push mytrgor/udacity_capstone
+						docker push fran6cu/udacity_capstone
 					'''
 				}
 			}
 		}
 
-		stage('Set current kubectl context') {
+		stage('Set kubectl config') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'jenkins_udacity_cloud_devops_capstone') {
+				withAWS(region:'us-east-1', credentials:'uda-credentials') {
 					sh '''
 						kubectl config use-context arn:aws:eks:us-east-1:474880089665:cluster/udacitycapstonecluster14
 					'''
 				}
 			}
 		}
-		stage('Apply the blue container') {
+		stage('Blue') {
 			steps {
 				withAWS(region:'us-east-1', credentials:'jenkins_udacity_cloud_devops_capstone') {
 					sh '''
