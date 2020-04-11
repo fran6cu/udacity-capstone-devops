@@ -22,7 +22,7 @@
         "containers": [
           {
             "name": "green",
-            "image": "mytrgor/udacity_capstone",
+            "image": "fran6cu/udacity_capstone",
             "ports": [
               {
                 "name": "http-server",
