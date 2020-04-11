@@ -1,10 +1,10 @@
 pipeline {
 	agent any
 	stages {
-		stage('Lint the index.html') {
+		stage('Lint html') {
 			steps {
 					sh '''
-					    tidy blue_green_deploy/*.html
+					    tidy deploy-bg/*.html
 					'''
 			}
 		}
