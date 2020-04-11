@@ -39,27 +39,27 @@ pipeline {
 		}
 		stage('Blue') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'jenkins_udacity_cloud_devops_capstone') {
+				withAWS(region:'us-east-1', credentials:'uda-credentials') {
 					sh '''
-						kubectl apply -f blue_green_deploy/blue.controller.json
+						kubectl apply -f deploy-bg/blue.controller.json
 					'''
 				}
 			}
 		}
-		stage('Apply the green container') {
+		stage('Green') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'jenkins_udacity_cloud_devops_capstone') {
+				withAWS(region:'us-east-1', credentials:'uda-credentials') {
 					sh '''
-						kubectl apply -f blue_green_deploy/green.controller.json
+						kubectl apply -f deploy-bg/green.controller.json
 					'''
 				}
 			}
 		}
-		stage('Apply the blue service within udacitycapstonecluster14') {
+		stage('Apply Blue') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'jenkins_udacity_cloud_devops_capstone') {
+				withAWS(region:'us-east-1', credentials:'uda-credentials') {
 					sh '''
-						kubectl apply -f blue_green_deploy/blue.service.json
+						kubectl apply -f deploy-bg/blue.service.json
 					'''
 				}
 			}
@@ -69,11 +69,11 @@ pipeline {
                 input "Wait to redirect the traffic to the green service"
             }
         }
-		stage('Apply the green service within udacitycapstonecluster14') {
+		stage('Apply the green service within cluster') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'jenkins_udacity_cloud_devops_capstone') {
+				withAWS(region:'us-east-1', credentials:'uda-credentials') {
 					sh '''
-						kubectl apply -f blue_green_deploy/green.service.json
+						kubectl apply -f deploy-bg/green.service.json
 					'''
 				}
 			}
