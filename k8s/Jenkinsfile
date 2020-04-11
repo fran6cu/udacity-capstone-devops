@@ -23,11 +23,11 @@ pipeline {
 			}
 		}
 
-		stage('Create a config file') {
+		stage('Get Configuration File') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'jenkins_udacity_cloud_devops_capstone') {
+				withAWS(region:'us-east-1', credentials:'uda_credentials') {
 					sh '''
-						aws eks --region us-east-1 update-kubeconfig --name udacitycapstonecluster14
+						aws eks --region us-east-1 update-kubeconfig --name udacity-cluster-eks
 					'''
 				}
 			}
