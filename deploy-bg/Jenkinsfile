@@ -30,7 +30,7 @@ pipeline {
 
 		stage('Set kubectl config') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'Jenkins') {
+				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
 						kubectl config use-context arn:aws:eks:us-east-1:474880089665:cluster/udacity-cluster-eks
 					'''
@@ -39,7 +39,7 @@ pipeline {
 		}
 		stage('Blue') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'Jenkins') {
+				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
 						kubectl apply -f deploy-bg/blue.controller.json
 					'''
@@ -48,7 +48,7 @@ pipeline {
 		}
 		stage('Green') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'Jenkins') {
+				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
 						kubectl apply -f deploy-bg/green.controller.json
 					'''
@@ -57,7 +57,7 @@ pipeline {
 		}
 		stage('Apply Blue') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'Jenkins') {
+				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
 						kubectl apply -f deploy-bg/blue.service.json
 					'''
@@ -71,7 +71,7 @@ pipeline {
         }
 		stage('Apply the green service within cluster') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'Jenkins') {
+				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
 						kubectl apply -f deploy-bg/green.service.json
 					'''
