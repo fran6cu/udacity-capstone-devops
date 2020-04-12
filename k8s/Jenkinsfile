@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Create a k8s cluster') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'Jenkins') {
+				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
 						eksctl create cluster \
 						--name udacity-cluster-eks \
