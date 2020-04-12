@@ -37,7 +37,7 @@ pipeline {
 				}
 			}
 		}
-		stage('Blue') {
+		stage('Blue Deploy') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
@@ -46,7 +46,7 @@ pipeline {
 				}
 			}
 		}
-		stage('Green') {
+		stage('Green Deploy') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
@@ -55,7 +55,7 @@ pipeline {
 				}
 			}
 		}
-		stage('Apply Blue') {
+		stage('Redirect to Blue') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
@@ -64,12 +64,12 @@ pipeline {
 				}
 			}
 		}
-		stage('Redirecting to the green ...') {
+		stage('Wait user approve') {
             steps {
-                input "Wait to redirect the traffic to the green service"
+                input "Redirect the traffic to the green service?"
             }
         }
-		stage('Applying the green service within cluster') {
+		stage('Redirect to green') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
