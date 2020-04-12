@@ -10,7 +10,7 @@ pipeline {
 		}
 		stage('Build Docker Image') {
 			steps {
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Jenkins', usernameVariable: 'usrdocker', passwordVariable: 'pwddocker']]){
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Dockerhub', usernameVariable: 'usrdocker', passwordVariable: 'pwddocker']]){
 					sh '''
 						docker build -t fran6cu/udacity_capstone -f deploy-bg/Dockerfile .
 					'''
@@ -19,7 +19,7 @@ pipeline {
 		}
 		stage('Push Docker Image to Dockerhub') {
 			steps {
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Jenkins', usernameVariable: 'usrdocker', passwordVariable: 'pwddocker']]){
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Dockerhub', usernameVariable: 'usrdocker', passwordVariable: 'pwddocker']]){
 					sh '''
 						docker login -u $usrdocker -p $pwddocker
 						docker push fran6cu/udacity_capstone
