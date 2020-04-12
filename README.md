@@ -78,6 +78,7 @@ $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ub
 ##### awscli
 ```
 $ pip3 install --upgrade --user awscli
+$ sudo apt install awscli
 $ aws configure
 AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX
 AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
