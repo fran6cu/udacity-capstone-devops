@@ -10,7 +10,7 @@ pipeline {
 		}
 		stage('Build Docker Image') {
 			steps {
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Jenkins', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Jenkins', usernameVariable: 'usrdocker', passwordVariable: 'pwddocker']]){
 					sh '''
 						docker build -t fran6cu/udacity_capstone -f deploy-bg/Dockerfile .
 					'''
@@ -19,9 +19,9 @@ pipeline {
 		}
 		stage('Push Docker Image to Dockerhub') {
 			steps {
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Jenkins', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Jenkins', usernameVariable: 'usrdocker', passwordVariable: 'pwddocker']]){
 					sh '''
-						docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+						docker login -u $usrdocker -p $pwddocker
 						docker push fran6cu/udacity_capstone
 					'''
 				}
@@ -64,12 +64,12 @@ pipeline {
 				}
 			}
 		}
-		stage('Wait to redirect the traffic to the green service') {
+		stage('Redirecting to the green ...') {
             steps {
                 input "Wait to redirect the traffic to the green service"
             }
         }
-		stage('Apply the green service within cluster') {
+		stage('Applying the green service within cluster') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
