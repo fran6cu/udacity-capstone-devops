@@ -23,14 +23,14 @@ pipeline {
 			}
 		}
 
-		stage('Get Configuration File') {
-			steps {
-				withAWS(region:'us-east-2', credentials:'Jenkins') {
-					sh '''
-						aws eks --region us-east-2 update-kubeconfig --name udacity-cluster-eks
-					'''
-				}
-			}
-		}
+	//	stage('Get Configuration File') {
+	//		steps {
+	//			withAWS(region:'us-east-2', credentials:'Jenkins') {
+	//				sh '''
+	//					aws eks --region us-east-2 update-kubeconfig --name udacity-cluster-eks
+	//				'''
+	//			}
+	//		}
+	//	}
 	}
 }
