@@ -20,6 +20,9 @@ In this project I will apply the skills and knowledge which were developed throu
 * awscli
 * eksctl
 
+![Jenkins](./screenshots/jenkins.png)
+![AWS](./screenshots/aws.png)
+
 ## Steps:
 
 ### Step 1: Setup of EC2 for Jenkins
