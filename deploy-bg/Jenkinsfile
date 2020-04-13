@@ -32,6 +32,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
+						export KUBECONFIG=/home/jenkins/.kube/config
 						kubectl config use-context arn:aws:eks:us-east-2:088642813079:cluster/udacity-cluster-eks
 					'''
 				}
