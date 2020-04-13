@@ -1,6 +1,5 @@
-# Udacity 
-## Cloud DevOps Engineering Nanodegree
-### Capstone project
+# Udacity - Cloud DevOps Engineering Nanodegree - Capstone Project
+
 
 
 The project includes:
@@ -40,32 +39,30 @@ The project includes:
 
 #### Setup of EC2 for Jenkins
 
-##### JDK
+To install Jenkins in EC2:
+
+1.- Install JDK
+
 ```
 $ sudo apt update
 $ sudo apt install default-jre            
-$ sudo apt install openjdk-11-jre-headless
 $ sudo apt install openjdk-8-jre-headless
 ```
+2.- Install Jenkins
 
-##### Python
 ```
 $ sudo apt update
-$ sudo apt install python-pip
-$ sudo apt install python3-pip
+$ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+$ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+$ sudo apt install jenkins
+$ sudo usermod -a -G docker jenkins
+$ sudo systemctl start jenkins
 ```
 
-##### Nodejs
-```
-$ sudo apt update
-$ sudo apt install nodejs
-```
-
-##### Ruby
-```
-$ sudo apt update
-$ sudo apt install ruby-full
-```
+3.- Jenkins Plugins (Blue Ocean and AWS)
+ 
+##### TOOLS NEEDED FOR PIPELINES
+ 
 
 ##### Docker
 ```
@@ -77,6 +74,12 @@ $ sudo apt  install docker.io
 $ sudo chmod 666 /var/run/docker.sock
 $ sudo systemctl restart docker
 ```
+##### Python
+```
+$ sudo apt update
+$ sudo apt install python-pip
+$ sudo apt install python3-pip
+```
 
 ##### awscli
 ```
@@ -87,15 +90,6 @@ AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX
 AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 Default region name [None]: us-east-1
 Default output format [None]: json
-```
-
-##### VirtualBox
-```
-$ sudo apt update
-$ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-$ sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib"
-$ sudo apt install virtualbox-6.0
 ```
 
 ##### eksctl
@@ -114,17 +108,6 @@ $ mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticat
 $ echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
 ```
 
-##### minikube
-```
-$ sudo apt update
-$ sudo apt install apt-transport-https
-$ sudo apt upgrade
-$ sudo apt install virtualbox virtualbox-ext-pack
-$ wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-$ chmod +x minikube-linux-amd64
-$ sudo mv minikube-linux-amd64 /usr/local/bin/minikube
-```
-
 ##### kubectl
 ```
 sudo apt update
@@ -135,23 +118,14 @@ $ echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
 $ export KUBECONFIG=~/.kube/config
 ```
 
-##### Jenkins
-```
-$ sudo apt update
-$ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-$ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-$ sudo apt install jenkins
-$ sudo usermod -a -G docker jenkins
-$ sudo systemctl start jenkins
-```
+
 
 ##### Tidy
 ```
 sudo apt install -y tidy
 ```
 
-#### Jenkins plugins
-There are supposed to be installed plugins regarding Docker, k8s, BlueOcean, and AWS.
+
 
 
 
