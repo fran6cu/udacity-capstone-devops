@@ -42,6 +42,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
+						pip3 install --upgrade --user awscli
 						kubectl apply -f deploy-bg/bluecontroller.json
 					'''
 				}
