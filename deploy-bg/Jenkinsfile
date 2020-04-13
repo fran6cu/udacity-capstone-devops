@@ -42,7 +42,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
-						kubectl apply -f deploy-bg/blue.controller.json
+						kubectl apply -f deploy-bg/bluecontroller.json
 					'''
 				}
 			}
@@ -51,7 +51,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
-						kubectl apply -f deploy-bg/green.controller.json
+						kubectl apply -f deploy-bg/greencontroller.json
 					'''
 				}
 			}
@@ -60,7 +60,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
-						kubectl apply -f deploy-bg/blue.service.json
+						kubectl apply -f deploy-bg/blueservice.json
 					'''
 				}
 			}
@@ -74,7 +74,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'Jenkins') {
 					sh '''
-						kubectl apply -f deploy-bg/green.service.json
+						kubectl apply -f deploy-bg/greenservice.json
 					'''
 				}
 			}
